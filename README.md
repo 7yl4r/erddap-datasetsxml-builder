@@ -1,17 +1,27 @@
-# 7yl4r's python project template
-template for starting in on an experiment in python using my preferred tooling.
+# erddap datasetsxml builder
 
-[![Open In Binder](https://mybinder.org/badge_logo.svg                     )]( https://mybinder.org/v2/gh/7yl4r/7ython-project-template/HEAD )
-[![Open In Colab ](https://colab.research.google.com/assets/colab-badge.svg)]( https://colab.research.google.com/github/7yl4r/7ython-project-template )
+This tool aims to maximize human-editability for ERDDAP's dataset configuration.
 
-# usage checklists:
+## Usage:
+* create a separate git repo for your ERDDAP datasets documentation
+* within the repo:
+  * a datasets folder exists
+  * within the datasets folder:
+    * each dataset has a folder containing
+      * a dataset.xml file
+      * (optional) a README.md file & other documentation
+* run `build_datasetsxml.py path/to/your/repo_root_folder`
+  * a `datasets.xml` file will be produced containing xml for all your datasets
+  * you can now copy the `datasets.xml` file to your ERDDAP server
+
+# setup checklist:
 ## setup as package checklist
-1. add name to setup.py
-2. add info to setup.cfg
-3. rename `projname` folder
-4. update `{projname}/__init__.py`
+1. [X] add name to setup.py
+2. [ ] add info to setup.cfg
+3. [X] rename `projname` folder
+4. [X] update `{projname}/__init__.py`
 
-# projname installation
+# installation
 
 ```
 python -m pip install -e .

@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     # The package metadata is specified in setup.cfg but GitHub's downstream dependency graph
     # does not work unless we put the name this here too.
-    #     name="pydwcviz",
+    name="erddap_datasetsxml_builder",
     use_scm_version={
         "write_to": "pydwcviz/_version.py",
         "write_to_template": '__version__ = "{version}"',

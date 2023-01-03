@@ -10,8 +10,8 @@ try:
 except ImportError:
     __version__ = "unknown"
 
-__title__ = "todo_packagename_here"
-# __author__ = ""
+__title__ = "erddap_datasetsxml_builder"
+__author__ = "Tylar Murray"
 __license__ = "MIT"
 
 __all__ = []
