@@ -2,10 +2,11 @@
 # NOTE: use python3 in the shebang line above if targeting py3 and not py2-compatible
 """ example main file with cmd line interface """
 from argparse import ArgumentParser
+import glob
 import logging
+from logging.handlers import RotatingFileHandler
+import os
 import sys
-
-import erddap_datasetsxml_builder
 
 PACKAGE_NAME = "erddap_datasetsxml_builder"
 COMMAND_NAME = "build_datasetsxml"
@@ -23,32 +24,19 @@ def parse_args(argv):
                         action="count",
                         default=0
     )
-    # other examples:
-    # parser.add_argument("source", help="directory to copy from")
-    # parser.add_argument('-l', '--log',
-    #     help="desired filepath of log file",
-    #     default="/var/opt/projectname/backup.log"
-    # )
-    # parser.add_argument('--rclonelog',
-    #     help="desired path of rclone log file",
-    #     default=None
-    # )
+    parser.add_argument("erddap_config_dir", help="path to erddap config directory")
     
-    
-    # add more here...
-    # parser_backup = subparsers.add_parser('backup', help='try backing up right now')
-    # parser_backup.set_defaults(func=backup)
-
     args = parser.parse_args()
     # =========================================================================
     # === set up logging behavior
     # =========================================================================
     if (args.verbose == 0):
-        logging.basicConfig(level=logging.WARNING)
+        stream_log_level = logging.WARNING
     elif (args.verbose == 1):
-        logging.basicConfig(level=logging.INFO)
+        stream_log_level = logging.INFO
     else: #} (args.verbose == 2){
-        logging.basicConfig(level=logging.DEBUG)
+        stream_log_level = logging.DEBUG
+    logging.basicConfig(level=stream_log_level)
 
     # === (optional) create custom logging format(s)
     # https://docs.python.org/3/library/logging.html#logrecord-attributes
@@ -59,16 +47,15 @@ def parse_args(argv):
     # === (optional) create handlers
     # https://docs.python.org/3/howto/logging.html#useful-handlers
     stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(_level)
+    stream_handler.setLevel(stream_log_level)
     stream_handler.setFormatter(formatter)
-    stream_handler.addFilter(DuplicateLogFilter())
-
+    
+    log_path = f'{PACKAGE_NAME}_{COMMAND_NAME}.log'
     file_handler = RotatingFileHandler(
-       f'/var/opt/{{{{PACKAGE_NAME}}/{{COMMAND_NAME}}.log', maxBytes=1e6, backupCount=5
+       log_path, maxBytes=1e6, backupCount=5
     )
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
-    file_handler.addFilter(DuplicateLogFilter())
 
     # === add the handlers (if any) to the logger
     _handlers = [
@@ -82,9 +69,19 @@ def parse_args(argv):
     )
     # =========================================================================
     return args
-    
+
+def build_datasetsxml(erddap_config_dir, **kwargs):
+    # open each dataset.xml
+    for filename in glob.iglob(os.path.join(erddap_config_dir, "datasets", "*", "dataset.xml")):
+        print(filename)
+        # TODO: append to datsets.xml
+    else:
+        raise ValueError(f"no dataset.xml files found in {erddap_config_dir}/datasets/")
+
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    args.func(args)
+    build_datasetsxml(**vars(args))
 else:
-    raise AssertionError("f"{{PACKAGE_NAME}}.{{SCRIPT_NAME}} CLI should called as __main__ and should not be imported.")
+    raise AssertionError(
+        f"{PACKAGE_NAME}.{SCRIPT_NAME} CLI should called as __main__ and should not be imported."
+    )
