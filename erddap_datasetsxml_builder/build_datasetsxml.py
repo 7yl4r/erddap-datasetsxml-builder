@@ -71,12 +71,30 @@ def parse_args(argv):
     return args
 
 def build_datasetsxml(erddap_config_dir, **kwargs):
+    PRE_FPATH = f"{erddap_config_dir}/_pre.xml"
+    POST_FPATH = f"{erddap_config_dir}/_post.xml"
+    DATASETS_XML_PATH = f"{erddap_config_dir}/datasets.xml"
+    file_list = [PRE_FPATH]
     # open each dataset.xml
-    for filename in glob.iglob(os.path.join(erddap_config_dir, "datasets", "*", "dataset.xml")):
-        print(filename)
-        # TODO: append to datsets.xml
-    else:
+    for fpath in glob.iglob(os.path.join(
+        erddap_config_dir, "datasets", "*", "dataset.xml"
+    )):
+        print(fpath)
+        file_list.append(fpath)
+
+    if len(file_list) < 2:
         raise ValueError(f"no dataset.xml files found in {erddap_config_dir}/datasets/")
+
+    file_list.append(POST_FPATH)
+
+    # put all the stuff into datsets.xml
+    with open(DATASETS_XML_PATH, "w") as outfile:
+        for fpath in file_list:
+            with open(fpath, "r") as f:
+                text = f.read()
+                outfile.write("\n")
+                outfile.write(text)
+                outfile.write("\n")
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])

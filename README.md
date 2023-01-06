@@ -5,6 +5,8 @@ This tool aims to maximize human-editability for ERDDAP's dataset configuration.
 ## Usage:
 * create a separate git repo for your ERDDAP datasets documentation
 * within the repo:
+  * a _pre.xml file containing "prefix" xml to put in the datsets.xml before the datasets themselves
+  * a _post.xml file containing "postfix" xml to put in datasets.xml after the datasets
   * a datasets folder exists
   * within the datasets folder:
     * each dataset has a folder containing
