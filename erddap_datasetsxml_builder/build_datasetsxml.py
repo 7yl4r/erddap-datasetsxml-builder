@@ -87,6 +87,7 @@ def build_datasetsxml(erddap_config_dir, **kwargs):
         raise ValueError(f"no dataset.xml files found in {erddap_config_dir}/datasets/")
 
     file_list.append(POST_FPATH)
+    print(f"writing {len(file_list)} datasets to {DATASETS_XML_PATH}")
     # put all the stuff into datsets.xml
     with open(DATASETS_XML_PATH, "w") as outfile:
         for fpath in file_list:
@@ -94,7 +95,7 @@ def build_datasetsxml(erddap_config_dir, **kwargs):
                 text = f.read()
                 outfile.write(text)
                 outfile.write("\n")
-    print(f"done writing {DATASETS_XML_PATH}")
+    print("done.")
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
     build_datasetsxml(**vars(args))
