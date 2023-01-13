@@ -16,6 +16,11 @@ This tool aims to maximize human-editability for ERDDAP's dataset configuration.
   * a `datasets.xml` file will be produced containing xml for all your datasets
   * you can now copy the `datasets.xml` file to your ERDDAP server
 
+```bash
+python erddap_datasetsxml_builder/build_datasetsxml.py ../erddap-config/
+```
+
+
 # setup checklist:
 ## setup as package checklist
 1. [X] add name to setup.py
