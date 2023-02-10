@@ -1,11 +1,11 @@
 # Base image
-FROM alpine:latest
+FROM python:3
 
 # installes required packages for our script
-RUN	apk add --no-cache \
-  bash \
-  ca-certificates \
-  jq
+# RUN	apk add --no-cache \
+#   bash \
+#   ca-certificates \
+#   jq
 
 # Copies your code file  repository to the filesystem
 COPY entrypoint.sh /entrypoint.sh
