@@ -99,5 +99,5 @@ if __name__ == "__main__":
     build_datasetsxml(**vars(args))
 else:
     raise AssertionError(
-        f"{PACKAGE_NAME}.{SCRIPT_NAME} CLI should called as __main__ and should not be imported.",
+        f"{PACKAGE_NAME}.{COMMAND_NAME} CLI should called as __main__ and should not be imported."
     )
