@@ -1,0 +1,16 @@
+# action.yaml
+name: 'create ERDDAP datasets.xml from erddap-config/datasets/'
+description: 'an ERDDAP datasets.xml configuration builder to improve dataset documentation.'
+inputs:
+  datasets_dir:
+    description: 'Path to /datasets/ directory relative to project root.'
+    required: false
+    default: './datasets/'
+# outputs:
+#   successful_dataset_count:
+#     description: 'Number of `dataset.xml`s compiled into datasets.xml.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.datasets_dir}}
