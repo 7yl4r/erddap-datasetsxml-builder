@@ -14,7 +14,7 @@ COPY . erddap_datasetsxml_builder/
 RUN chmod +x erddap_datasetsxml_builder/entrypoint.sh
 
 # install the package
-RUN cd erddap_datasetsxml_builder && python -m pip install -e .
+RUN cd erddap_datasetsxml_builder && poetry install
 
 # file to execute when the docker container starts up
 ENTRYPOINT ["erddap_datasetsxml_builder/entrypoint.sh"]

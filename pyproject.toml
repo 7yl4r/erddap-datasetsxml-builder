@@ -1,3 +1,14 @@
+[tool.poetry]
+name = "erddap_datasetsxml_builder"
+version = "2.0.0"
+description = "Build ERDAAP datasets.xml from human-legible docs."
+authors = ["Tylar Murray <email@tylar.info>"]
+readme = "README.md"
+packages = [{include = "erddap_datasetsxml_builder"}]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
 [build-system]
-requires = ["setuptools>=41.2", "setuptools_scm", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
