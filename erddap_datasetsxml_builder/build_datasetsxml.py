@@ -22,7 +22,11 @@ def parse_args(argv):
 
     # === arguments for the main command
     parser.add_argument(
-        "-v", "--verbose", help="increase output verbosity", action="count", default=0,
+        "-v",
+        "--verbose",
+        help="increase output verbosity",
+        action="count",
+        default=0,
     )
     parser.add_argument("erddap_config_dir", help="path to erddap config directory")
 

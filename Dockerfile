@@ -8,7 +8,7 @@ FROM python:3
 #   jq
 
 COPY ./* ./erddap_datasetsxml_builder/.
-    
+
 # ensure entrypoint script is executable
 RUN chmod +x ./erddap_datasetsxml_builder/entrypoint.sh
 
