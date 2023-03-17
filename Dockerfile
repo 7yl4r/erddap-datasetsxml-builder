@@ -7,6 +7,7 @@ FROM python:3
 #   ca-certificates \
 #   jq
 
+RUN mkdir ./erddap_datasetsxml_builder 
 COPY ./* ./erddap_datasetsxml_builder/.
 
 # ensure entrypoint script is executable
