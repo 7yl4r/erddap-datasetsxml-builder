@@ -20,14 +20,6 @@ This tool aims to maximize human-editability for ERDDAP's dataset configuration.
 python erddap_datasetsxml_builder/build_datasetsxml.py ../erddap-config/
 ```
 
-
-# setup checklist:
-## setup as package checklist
-1. [X] add name to setup.py
-2. [ ] add info to setup.cfg
-3. [X] rename `projname` folder
-4. [X] update `{projname}/__init__.py`
-
 # installation
 
 ```
