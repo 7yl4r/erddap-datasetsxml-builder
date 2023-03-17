@@ -1,8 +1,6 @@
 # Base image
 FROM python:3
 
-set -e
-
 # installes required packages for our script
 # RUN	apk add --no-cache \
 #   bash \
