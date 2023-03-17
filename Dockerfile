@@ -7,11 +7,13 @@ FROM python:3
 #   ca-certificates \
 #   jq
 
-# Copies your code file  repository to the filesystem
-COPY entrypoint.sh /entrypoint.sh
+COPY ./* ./erddap_datasetsxml_builder/.
+    
+# ensure entrypoint script is executable
+RUN chmod +x ./erddap_datasetsxml_builder/entrypoint.sh
 
-# change permission to execute the script and
-RUN chmod +x /entrypoint.sh
+# install the package
+RUN cd ./erddap_datasetsxml_builder && python -m pip install -e .
 
 # file to execute when the docker container starts up
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["./erddap_datasetsxml_builder/entrypoint.sh"]
