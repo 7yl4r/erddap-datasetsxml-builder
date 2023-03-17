@@ -1,5 +1,9 @@
 #!/bin/bash
-set -e
+#set -e
+
+ls -lah .
+
+tree
 
 python erddap_datasetsxml_builder/build_datasetsxml.py ${INPUT_DATASETS_DIR}
 
