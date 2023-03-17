@@ -15,8 +15,7 @@ RUN chmod +x erddap_datasetsxml_builder/entrypoint.sh
 
 # install poetry for installing the python package
 RUN pip install --no-cache-dir --upgrade pip \
- && pip install --no-cache-dir poetry \
- && poetry config settings.virtualenvs.create false
+ && pip install --no-cache-dir poetry
 # install the python package
 RUN cd erddap_datasetsxml_builder && poetry install --no-dev
 
