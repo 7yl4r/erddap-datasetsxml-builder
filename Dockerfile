@@ -7,17 +7,19 @@ FROM python:3
 #   ca-certificates \
 #   jq
 
-RUN mkdir erddap_datasetsxml_builder
-COPY . erddap_datasetsxml_builder/
+RUN mkdir /erddap_datasetsxml_builder
+COPY . /erddap_datasetsxml_builder/
 
 # ensure entrypoint script is executable
-RUN chmod +x erddap_datasetsxml_builder/entrypoint.sh
+RUN chmod +x /erddap_datasetsxml_builder/entrypoint.sh
 
 # install poetry for installing the python package
-RUN pip install --no-cache-dir --upgrade pip \
- && pip install --no-cache-dir poetry
+RUN cd /erddap_datasetsxml_builder && \
+  pip install --no-cache-dir --upgrade pip && \
+  pip install --no-cache-dir poetry
 # install the python package
-RUN cd erddap_datasetsxml_builder && poetry install --no-dev
+RUN cd /erddap_datasetsxml_builder && \
+  poetry install --no-dev
 
 # file to execute when the docker container starts up
-ENTRYPOINT ["erddap_datasetsxml_builder/entrypoint.sh"]
+ENTRYPOINT ["/erddap_datasetsxml_builder/entrypoint.sh"]
