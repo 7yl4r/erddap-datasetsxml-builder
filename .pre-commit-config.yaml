@@ -15,7 +15,7 @@ repos:
       files: requirements-dev.txt
 
 - repo: https://github.com/PyCQA/flake8
-  rev: 6.0.0
+  rev: 6.1.0
   hooks:
     - id: flake8
       exclude: ^(docs/source/conf.py|pyobis/obisissues.py)
@@ -29,13 +29,13 @@ repos:
       args: ["--profile", "black", "--filter-files"]
 
 - repo: https://github.com/psf/black
-  rev: 23.3.0
+  rev: 23.7.0
   hooks:
   - id: black
     language_version: python3
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.2.0
+  rev: v1.5.1
   hooks:
   - id: mypy
     exclude: docs/source/conf.py
@@ -66,14 +66,14 @@ repos:
 #         - --quiet-level=2
 
 - repo: https://github.com/asottile/pyupgrade
-  rev: v3.3.2
+  rev: v3.10.1
   hooks:
     - id: pyupgrade
       args:
         - --py36-plus
 
 - repo: https://github.com/asottile/add-trailing-comma
-  rev: v2.4.0
+  rev: v3.1.0
   hooks:
     - id: add-trailing-comma
 
