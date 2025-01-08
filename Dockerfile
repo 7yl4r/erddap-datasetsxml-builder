@@ -19,7 +19,7 @@ RUN cd /erddap_datasetsxml_builder && \
   pip install --no-cache-dir poetry
 # install the python package
 RUN cd /erddap_datasetsxml_builder && \
-  poetry install --no-dev
+  poetry install
 
 # file to execute when the docker container starts up
 ENTRYPOINT ["/erddap_datasetsxml_builder/entrypoint.sh"]
